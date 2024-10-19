@@ -41,7 +41,7 @@ export const pageHandler = async (_req: Request): Promise<Response> => {
 
     if (Deno.env.get("DEBUG") === "true") {
       const hmrCode = await Deno.readTextFile(
-        new URL("/src/hmr/index.html", import.meta.dirname)
+        `${import.meta.dirname}/src/hmr/index.html`
       );
 
       content += hmrCode;
