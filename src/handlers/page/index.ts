@@ -50,11 +50,16 @@ export const pageHandler = async (
     // load page
     let module;
     try {
-      module = await import(new URL(`file://${pageDir}page.tsx`).href);
+      const pageUrl = `${pageDir}page.tsx`;
+
+      module = await import(pageUrl);
     } catch (error) {
+      console.error(error);
       if (error instanceof Deno.errors.NotFound) {
         // If .tsx file is not found, try .jsx
-        module = await import(new URL(`file://${pageDir}page.jsx`).href);
+        const pageUrl = `${pageDir}page.jsx`;
+
+        module = await import(pageUrl);
       } else {
         // If it's a different error, rethrow it
         throw error;
@@ -73,12 +78,6 @@ export const pageHandler = async (
     if (typeof defaultExport === "string") {
       content += defaultExport;
     } else {
-      const response: Response | JSX.Element = await defaultExport(_req);
-
-      if (response instanceof Response) {
-        return response;
-      }
-
       // Load layouts
       const layouts: JSX.Element[] = [];
       let currentDir = pageDir;
@@ -110,6 +109,12 @@ export const pageHandler = async (
         // Move up one directory
         currentDirSegments.pop();
         currentDir = currentDirSegments.join("/");
+      }
+
+      const response: Response | JSX.Element = await defaultExport(_req);
+
+      if (response instanceof Response) {
+        return response;
       }
 
       content += renderToString(

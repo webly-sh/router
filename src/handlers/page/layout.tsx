@@ -1,6 +1,9 @@
 import type { JSX } from "react";
 
-export const renderLayout = (layouts: JSX.Element[], response: JSX.Element) => {
+export const renderLayout = (
+  layouts: JSX.Element[],
+  response: JSX.Element
+): JSX.Element => {
   if (layouts.length === 1) {
     const Layout = layouts[0];
     return <Layout>{response}</Layout>;
