@@ -1,11 +1,16 @@
-import { apiHandler } from "./api.ts";
-import { fileHandler } from "./file.ts";
-import { pageHandler } from "./page.ts";
+import { apiHandler } from "@/handlers/api.ts";
+import { fileHandler } from "@/handlers/file.ts";
+import { pageHandler } from "@/handlers/page/index.ts";
+import { hmrHandler } from "@/hmr/index.ts";
 
 export const handleRequest = async (_req: Request): Promise<Response> => {
   const url = new URL(_req.url);
 
   const basePath = url.pathname.split("/")[1];
+
+  if (Deno.env.get("DEBUG") === "true" && basePath === "_hmr") {
+    return hmrHandler(_req);
+  }
 
   switch (basePath) {
     case "api": {

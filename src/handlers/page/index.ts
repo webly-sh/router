@@ -1,4 +1,4 @@
-import { renderLayout } from "./layout.tsx";
+import { renderLayout } from "@/handlers/page/layout.tsx";
 import { renderToString } from "react-dom/server";
 import type { JSX } from "react";
 

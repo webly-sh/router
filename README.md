@@ -75,6 +75,21 @@ Will be served on `/uploads`
 
 Intended for files that are dynamically uploaded through your site's logic.
 
+## Hot Module Reload (HMR)
+`/_hmr`
+
+If `Deno.env.get('DEBUG') === true`.
+
+A page will reload when the reload signal is given. An HMR script will be passed to the page to communicate with the dev server.
+
+```
+import { hmrClient } from "@webly/router";
+
+function main() {
+    hmrClient.reload();
+}
+```
+
 # Usage
 ```
 import { handleRequest } from "@webly/router";

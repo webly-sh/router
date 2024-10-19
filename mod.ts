@@ -1,2 +1,3 @@
-export { handleRequest } from "./src/index.ts";
-export { redirect } from "./src/redirect.ts";
+export { handleRequest } from "@/index.ts";
+export { redirect } from "@/redirect.ts";
+export { hmrClient } from "@/hmr/index.ts";
