@@ -50,14 +50,14 @@ export const pageHandler = async (
     // load page
     let module;
     try {
-      const pageUrl = `${pageDir}page.tsx`;
+      const pageUrl = new URL(`file://${pageDir}page.tsx`).href;
 
       module = await import(pageUrl);
     } catch (error) {
       console.error(error);
       if (error instanceof Deno.errors.NotFound) {
         // If .tsx file is not found, try .jsx
-        const pageUrl = `${pageDir}page.jsx`;
+        const pageUrl = new URL(`file://${pageDir}page.jsx`).href;
 
         module = await import(pageUrl);
       } else {
