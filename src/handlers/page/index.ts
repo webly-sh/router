@@ -53,11 +53,11 @@ export const pageHandler = async (
     // load page
     let module;
     try {
-      module = await import(`${pageDir}page.tsx`);
+      module = await import(new URL(`file://${pageDir}page.tsx`).href);
     } catch (error) {
       if (error instanceof Deno.errors.NotFound) {
         // If .tsx file is not found, try .jsx
-        module = await import(`${pageDir}page.jsx`);
+        module = await import(new URL(`file://${pageDir}page.jsx`).href);
       } else {
         // If it's a different error, rethrow it
         throw error;
