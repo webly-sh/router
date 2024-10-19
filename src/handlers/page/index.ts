@@ -1,6 +1,7 @@
 import { renderLayout } from "@/handlers/page/layout.tsx";
 import { renderToString } from "react-dom/server";
 import type { JSX } from "react";
+import { hmrScript } from "@/hmr/index.ts";
 
 export const pageHandler = async (
   _req: Request,
@@ -43,10 +44,7 @@ export const pageHandler = async (
     content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
 
     if (Deno.env.get("DEBUG") === "true") {
-      const hmrCode = await import("@/hmr/index.html", {
-        with: { type: "text" },
-      });
-      content += hmrCode;
+      content += hmrScript;
     }
 
     // load page
