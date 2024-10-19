@@ -40,7 +40,9 @@ export const pageHandler = async (_req: Request): Promise<Response> => {
     content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
 
     if (Deno.env.get("DEBUG") === "true") {
-      const hmrCode = await Deno.readTextFile(`../../hmr/index.html`);
+      const hmrCode = await Deno.readTextFile(
+        new URL("../../hmr/index.html", import.meta.url)
+      );
 
       content += hmrCode;
     }
