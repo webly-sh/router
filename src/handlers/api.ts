@@ -13,7 +13,9 @@ export const apiHandler = async (
   const apiDir = `${_basePath}${path}`;
 
   try {
-    const module = await import(`${apiDir}${method.toLowerCase()}.ts`);
+    const module = await import(
+      new URL(`file://${apiDir}${method.toLowerCase()}.ts`).href
+    );
     return module.route(_req);
   } catch (error) {
     console.error(

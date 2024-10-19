@@ -102,7 +102,9 @@ export const pageHandler = async (
           }
 
           await Deno.stat(layoutPath);
-          const layoutModule = await import(layoutPath);
+          const layoutModule = await import(
+            new URL(`file://${layoutPath}`).href
+          );
           layouts.unshift(layoutModule.default); // Add to the beginning of the array
           includedLayouts.push(layoutPath);
         } catch (_) {
