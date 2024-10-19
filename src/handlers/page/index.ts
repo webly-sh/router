@@ -2,7 +2,10 @@ import { renderLayout } from "@/handlers/page/layout.tsx";
 import { renderToString } from "react-dom/server";
 import type { JSX } from "react";
 
-export const pageHandler = async (_req: Request): Promise<Response> => {
+export const pageHandler = async (
+  _req: Request,
+  _basePath: string
+): Promise<Response> => {
   const url = new URL(_req.url);
 
   let path = url.pathname;
@@ -11,7 +14,7 @@ export const pageHandler = async (_req: Request): Promise<Response> => {
   }
 
   try {
-    let pageDir = `${Deno.cwd()}/pages${path}`;
+    let pageDir = `${_basePath}/pages${path}`;
 
     // Compile Tailwind CSS
     const tailwindFilePath = `/static/global.css`;
@@ -82,7 +85,7 @@ export const pageHandler = async (_req: Request): Promise<Response> => {
       // Load layouts
       const layouts: JSX.Element[] = [];
       let currentDir = pageDir;
-      const pagesDir = `${Deno.cwd()}/pages`;
+      const pagesDir = `${_basePath}/pages`;
 
       const currentDirSegments = currentDir.split("/");
       const pagesDirSegments = pagesDir.split("/");

@@ -1,8 +1,11 @@
-export const fileHandler = async (url: URL): Promise<Response> => {
+export const fileHandler = async (
+  url: URL,
+  _basePath: string
+): Promise<Response> => {
   const path = url.pathname;
 
   try {
-    const fileDir = `${Deno.cwd()}${path}`;
+    const fileDir = `${_basePath}${path}`;
 
     const file = await Deno.readFile(fileDir);
     const response = new Response(file);

@@ -1,4 +1,7 @@
-export const apiHandler = async (_req: Request): Promise<Response> => {
+export const apiHandler = async (
+  _req: Request,
+  _basePath: string
+): Promise<Response> => {
   const method = _req.method;
   const url = new URL(_req.url);
 
@@ -7,7 +10,7 @@ export const apiHandler = async (_req: Request): Promise<Response> => {
     path += "/";
   }
 
-  const apiDir = `${Deno.cwd()}${path}`;
+  const apiDir = `${_basePath}${path}`;
 
   try {
     const module = await import(`${apiDir}${method.toLowerCase()}.ts`);
