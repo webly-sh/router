@@ -1,6 +1,6 @@
 const main = async () => {
   const hmrCode = await Deno.readTextFile(
-    `${import.meta.dirname}/src/hmr/index.html`
+    new URL(`${import.meta.url}/src/hmr/index.html`).href
   );
 
   console.log(hmrCode);

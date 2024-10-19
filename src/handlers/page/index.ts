@@ -43,8 +43,9 @@ export const pageHandler = async (
     content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
 
     if (Deno.env.get("DEBUG") === "true") {
+      console.log(`file://${import.meta.url}/src/hmr/index.html`);
       const hmrCode = await Deno.readTextFile(
-        new URL(`file://${import.meta.dirname}/src/hmr/index.html`).href
+        new URL(`file://${import.meta.url}/src/hmr/index.html`).href
       );
 
       content += hmrCode;
