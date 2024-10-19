@@ -38,4 +38,4 @@ class HMRClient {
   }
 }
 
-export const hmrClient = new HMRClient();
+export const hmrClient: HMRClient = new HMRClient();
