@@ -2,7 +2,7 @@ import { apiHandler } from "./api.ts";
 import { fileHandler } from "./file.ts";
 import { pageHandler } from "./page.ts";
 
-export const router = async (_req: Request): Promise<Response> => {
+export const handleRequest = async (_req: Request): Promise<Response> => {
   const url = new URL(_req.url);
 
   const basePath = url.pathname.split("/")[1];

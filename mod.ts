@@ -1,1 +1,2 @@
-export { router } from "./src/index.ts";
+export { handleRequest } from "./src/index.ts";
+export { redirect } from "./src/redirect.ts";

@@ -44,7 +44,19 @@ export const pageHandler = async (_req: Request): Promise<Response> => {
     content += hmrCode;
 
     // load page
-    const module = await import(`${pageDir}page.tsx`);
+    let module;
+    try {
+      module = await import(`${pageDir}page.tsx`);
+    } catch (error) {
+      if (error instanceof Deno.errors.NotFound) {
+        // If .tsx file is not found, try .jsx
+        module = await import(`${pageDir}page.jsx`);
+      } else {
+        // If it's a different error, rethrow it
+        throw error;
+      }
+    }
+
     const defaultExport = module.default;
 
     if (
