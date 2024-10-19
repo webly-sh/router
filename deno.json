@@ -1,0 +1,18 @@
+{
+  "name": "@webly/router",
+  "author": "Kevin Sundar Raj (@kevtechi)",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "license": "GPL-3.0",
+  "vendor": true,
+  "imports": {
+    "@types/react": "npm:@types/react@^18.3.11",
+    "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "react": "npm:react@^18.3.1",
+    "react-dom": "npm:react-dom@^18.3.1"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}
