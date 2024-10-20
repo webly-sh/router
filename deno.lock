@@ -1,10 +1,17 @@
 {
   "version": "4",
   "specifiers": {
+    "jsr:@std/media-types@^1.0.3": "1.0.3",
     "npm:@types/react-dom@18.3.1": "18.3.1",
+    "npm:@types/react@18.3.1": "18.3.1",
     "npm:@types/react@18.3.11": "18.3.11",
     "npm:react-dom@18.3.1": "18.3.1_react@18.3.1",
     "npm:react@18.3.1": "18.3.1"
+  },
+  "jsr": {
+    "@std/media-types@1.0.3": {
+      "integrity": "b12d30a7852f7578f4d210622df713bbfd1cbdd9b4ec2eaf5c1845ab70bab159"
+    }
   },
   "npm": {
     "@types/prop-types@15.7.13": {
@@ -13,7 +20,14 @@
     "@types/react-dom@18.3.1": {
       "integrity": "sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==",
       "dependencies": [
-        "@types/react"
+        "@types/react@18.3.11"
+      ]
+    },
+    "@types/react@18.3.1": {
+      "integrity": "sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==",
+      "dependencies": [
+        "@types/prop-types",
+        "csstype"
       ]
     },
     "@types/react@18.3.11": {
@@ -66,8 +80,9 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@std/media-types@^1.0.3",
       "npm:@types/react-dom@18.3.1",
-      "npm:@types/react@18.3.11",
+      "npm:@types/react@18.3.1",
       "npm:react-dom@18.3.1",
       "npm:react@18.3.1"
     ]

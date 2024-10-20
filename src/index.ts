@@ -34,7 +34,23 @@ export const createRequestHandler =
         return response;
       }
       default: {
-        const response = await pageHandler(_req, basePath);
+        const extension = url.pathname.split(".").pop();
+
+        if (extension === "tsx" || extension === "jsx") {
+          return await pageHandler(_req, basePath);
+        }
+
+        let path = url.pathname.startsWith("/pages")
+          ? url.pathname
+          : `/pages${url.pathname}`;
+        if (!extension || extension.startsWith("/")) {
+          path = `${path}/index.html`;
+        }
+
+        const response = await fileHandler(
+          new URL(`${url.protocol}//${url.host}${path}`),
+          basePath
+        );
         return response;
       }
     }

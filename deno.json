@@ -1,7 +1,7 @@
 {
   "name": "@webly/router",
   "author": "Kevin Sundar Raj (@kevtechi)",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "exports": "./mod.ts",
   "license": "GPL-3.0",
   "vendor": true,
@@ -9,11 +9,12 @@
     "start": "deno run --watch -A main.ts"
   },
   "imports": {
+    "@/": "./src/",
+    "@std/media-types": "jsr:@std/media-types@^1.0.3",
     "@types/react": "npm:@types/react@18.3.1",
     "@types/react-dom": "npm:@types/react-dom@18.3.1",
     "react": "npm:react@18.3.1",
-    "react-dom": "npm:react-dom@18.3.1",
-    "@/": "./src/"
+    "react-dom": "npm:react-dom@18.3.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
